@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <title>Add Map Element</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <style>
+
+        *{
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        body{
+            background-color: black;
+            color:aqua;
+        }
+
+        input[type=text], select {
+          width: 100%;
+          padding: 12px 20px;
+          margin: 8px 0;
+          display: inline-block;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+          box-sizing: border-box;
+        }
+        
+        button[type=submit] {
+          width: 100%;
+          background-color: #4CAF50;
+          color: white;
+          padding: 14px 20px;
+          margin: 8px 0;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
+        }
+        
+        button[type=submit]:hover {
+          background-color: #45a049;
+        }
+        
+        div {
+          border-radius: 5px;
+          background-color: #000000;
+          padding: 20px;
+        }
+        </style>
+
+</head>
+
+<body>
+
+<div class="container">
+    <form action = "http://localhost:5000/nft" method = "POST" enctype="multipart/form-data">
+      <center><h2>Generate IPFS Token</h2></center>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <label for="file_name">File Name</label>
+            <input type="text" class="form-control" placeholder="" name = "summary">
+          </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="file">File Upload</label>
+                <input type="file" class="form-control" placeholder="" name = "file">
+              </div>
+            </div>
+  
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+  </div>
+
+<div class="container" style="color:red">
+    {% if file_loc %}
+        <h2> {{ file_loc }}</h2>
+    {% endif %}
+</div>
+</body>
+
+  </html>

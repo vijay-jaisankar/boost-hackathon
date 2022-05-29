@@ -50,7 +50,7 @@ with open("../book-recommender/model.pkl", "rb") as f:
 """
 @app.route("/")
 def home():
-    return render_template(url_for("home"))
+    return render_template("home.html")
 
 """
     Add Coordinate Route
@@ -66,12 +66,7 @@ def add_map():
         addr = request.form["address"]
         name = request.body["name"]
         description = request.body["description"]
-        
-        # If the item added is a bookshop
-        if request.form.get("bookshop"):
-            special = "1"
-        else:
-            special = "0"
+        special = request.body["special"]
 
         # API Call
         endpoint = f"http://127.0.0.1:5000/{NODE_API_PORT}/addlocation/"
@@ -89,15 +84,15 @@ def add_map():
         # Successful API Call
         if str(r.status_code) == "200":
             flash("Item added successfully")
-            return redirect(url_for("add_map"))
+            return redirect("add_map.html")
 
         # Unsuccessful API Call
         else:
             flash("There was an error adding this item.")
-            return redirect(url_for("home"))
+            return redirect("home.html")
 
     else:
-        return render_template(url_for("add_map"))
+        return render_template("add_map.html")
 
 
 """
@@ -115,7 +110,7 @@ def maps():
     # Unsuccessful API Call
     if str(r.status_code) != "200":
         flash("There was an error getting all locations")
-        return redirect(url_for("home"))
+        return redirect("home.html")
 
     # Successful API Call
     else:
@@ -183,15 +178,15 @@ def nft():
         # Successful API Call
         if str(r.status_code) == "200":
             flash("NFT generated successfully")
-            return render_template(url_for("nft"), file_loc = r.json())
+            return render_template("nft.html", file_loc = r.json())
 
         # Unsuccessful API Call
         else:
             flash("There was an error generating the IPFS location.")
-            return redirect(url_for("home"))
+            return redirect("home.html")
 
     else:
-        return render_template(url_for("nft"), file_loc = None)
+        return render_template("nft.html", file_loc = None)
 
 
 
@@ -218,17 +213,17 @@ def book():
             books_list.append(df.iloc[i[0]].BookTitle)
 
 
-        return render_template(url_for("book"), rec_list = recommended_list)
+        return render_template("book.html", rec_list = books_list)
     
     else:
-        return render_template(url_for("book"), rec_list = None)
+        return render_template("book.html", rec_list = [])
 
 """
     Poster Designer
 """
 @app.route("/design")
 def design():
-    return render_template(url_for("design"))
+    return render_template("design.html")
 
 
 
