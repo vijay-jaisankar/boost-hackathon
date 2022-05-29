@@ -12,3 +12,5 @@ They can also use our book recommender to promote their products.
 
 ## Challenges
 This was the first time using blockchain so it was quite hard integrating it with the rest of the application. We got over this with consistent fiddling with the code and debugging.
+
+https://vimeo.com/714880080
